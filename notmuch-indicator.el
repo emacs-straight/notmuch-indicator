@@ -6,7 +6,7 @@
 ;; Maintainer: notmuch-indicator Development <~protesilaos/notmuch-indicator@lists.sr.ht>
 ;; URL: https://git.sr.ht/~protesilaos/notmuch-indicator
 ;; Mailing-List: https://lists.sr.ht/~protesilaos/notmuch-indicator
-;; Version: 0.2.1
+;; Version: 0.2.2
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: convenience, mail
 
@@ -123,7 +123,7 @@ the source code the quotes are escaped---please check the Help
 buffer for the clean code (I dislike markup in doc strings)):
 
     (setq notmuch-indicator-args
-          \='((:terms \"tag:unread and tag:inbox\" :label \"@\")
+         \\='((:terms \"tag:unread and tag:inbox\" :label \"@\")
             (:terms \"from:bank and tag:bills\" :label \"😱\")
             (:terms \"--output threads tag:loveletter\" :label \"💕\")))
 
@@ -211,8 +211,7 @@ It is appended to the `global-mode-string'.")
 
 (defun notmuch-indicator--indicator ()
   "Prepare new mail count mode line indicator."
-  (when (not (string-empty-p notmuch-indicator-string))
-    (setq global-mode-string (delq 'notmuch-indicator-string global-mode-string)))
+  (setq global-mode-string (delq 'notmuch-indicator-string global-mode-string))
   (if-let ((count (notmuch-indicator--return-count)))
       (setq notmuch-indicator-string count
             ;; FIXME 2022-09-22: This may be hacky, but I cannot remember or
@@ -245,7 +244,6 @@ The delay is specified by `notmuch-indicator-refresh-count'."
   "Refresh the active indicator."
   (when (notmuch-indicator--running-p)
     (cancel-function-timers #'notmuch-indicator--indicator)
-    (setq global-mode-string (delq 'notmuch-indicator-string global-mode-string))
     (notmuch-indicator--run)))
 
 (define-obsolete-function-alias
