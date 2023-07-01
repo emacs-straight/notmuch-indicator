@@ -6,7 +6,7 @@
 ;; Maintainer: notmuch-indicator Development <~protesilaos/notmuch-indicator@lists.sr.ht>
 ;; URL: https://git.sr.ht/~protesilaos/notmuch-indicator
 ;; Mailing-List: https://lists.sr.ht/~protesilaos/notmuch-indicator
-;; Version: 0.2.2
+;; Version: 1.0.0
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: convenience, mail
 
@@ -178,11 +178,12 @@ option `notmuch-indicator-refresh-count'."
     (define-key map [mode-line mouse-1]
                 (lambda () (interactive) (notmuch-search terms)))
     (propertize
-     (format "%s%s "
+     (format "%s%s"
              (if (and face label)
                  (propertize label 'face face)
                (or label ""))
              count)
+     'mouse-face 'highlight
      'help-echo (format "mouse-1: Open notmuch search for `%s'" terms)
      'local-map map)))
 
@@ -202,7 +203,7 @@ option `notmuch-indicator-refresh-count'."
   "Parse `notmuch-indicator-args' and format them as single string."
   (mapconcat
    #'notmuch-indicator--format-output
-   notmuch-indicator-args ""))
+   notmuch-indicator-args " "))
 
 (defvar notmuch-indicator-string ""
   "String showing the `notmuch-indicator' state.
