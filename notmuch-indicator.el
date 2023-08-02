@@ -187,23 +187,28 @@ option `notmuch-indicator-refresh-count'."
      'help-echo (format "mouse-1: Open notmuch search for `%s'" terms)
      'local-map map)))
 
-(defun notmuch-indicator--format-output (properties)
-  "Format PROPERTIES of `notmuch-indicator-args'."
-  (let ((count (notmuch-indicator--shell-command (plist-get properties :terms))))
-    (if (and (zerop (string-to-number count))
-             notmuch-indicator-hide-empty-counters)
-        ""
-      (notmuch-indicator--format-label
-       (plist-get properties :label)
-       count
-       (plist-get properties :face)
-       (plist-get properties :terms)))))
+(defun notmuch-indicator--format-counter (count properties)
+  "Format counter with COUNT and PROPERTIES of `notmuch-indicator-args'."
+  (notmuch-indicator--format-label
+   (plist-get properties :label)
+   count
+   (plist-get properties :face)
+   (plist-get properties :terms)))
 
-(defun notmuch-indicator--return-count ()
+(defun notmuch-indicator--get-counters ()
+  "Return `notmuch-indicator-args' per `notmuch-indicator-hide-empty-counters'."
+  (delq nil
+        (mapcar
+         (lambda (properties)
+           (let ((count (notmuch-indicator--shell-command (plist-get properties :terms))))
+             (unless (and (zerop (string-to-number count))
+                          notmuch-indicator-hide-empty-counters)
+               (notmuch-indicator--format-counter count properties))))
+         notmuch-indicator-args)))
+
+(defun notmuch-indicator--return-single-string ()
   "Parse `notmuch-indicator-args' and format them as single string."
-  (mapconcat
-   #'notmuch-indicator--format-output
-   notmuch-indicator-args " "))
+  (mapconcat #'identity (notmuch-indicator--get-counters) " "))
 
 (defvar notmuch-indicator-string ""
   "String showing the `notmuch-indicator' state.
@@ -211,9 +216,9 @@ It is appended to the `global-mode-string'.")
 (put 'notmuch-indicator-string 'risky-local-variable t)
 
 (defun notmuch-indicator--indicator ()
-  "Prepare new mail count mode line indicator."
+  "Prepare `notmuch-indicator-string'."
   (setq global-mode-string (delq 'notmuch-indicator-string global-mode-string))
-  (if-let ((count (notmuch-indicator--return-count)))
+  (if-let ((count (notmuch-indicator--return-single-string)))
       (setq notmuch-indicator-string count
             ;; FIXME 2022-09-22: This may be hacky, but I cannot remember or
             ;; find a function that appends an element as the second in a
@@ -231,9 +236,10 @@ It is appended to the `global-mode-string'.")
   "Return non-nil if `notmuch-indicator--indicator' is running."
   (when (executable-find "notmuch")
     (delq nil
-          (mapcar (lambda (timer)
-                    (eq (timer--function timer) 'notmuch-indicator--indicator))
-                  timer-list))))
+          (mapcar
+           (lambda (timer)
+             (eq (timer--function timer) 'notmuch-indicator--indicator))
+           timer-list))))
 
 (defun notmuch-indicator--run ()
   "Run the timer with a delay, starting it if necessary.
