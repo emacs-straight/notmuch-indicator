@@ -28,48 +28,19 @@
 ;;; Commentary:
 ;;
 ;; This is a simple package that renders an indicator with an email
-;; count of the `notmuch' index on the Emacs mode line.  The underlying
-;; mechanism is that of `notmuch-count(1)', which is used to find the
-;; number of items that match the given search terms.
+;; count of the `notmuch' index on the Emacs mode line.  The
+;; underlying mechanism is that of `notmuch-count(1)', which is used
+;; to find the number of items that match the given search terms.  For
+;; example, the letter "U" or the emoji "💬" can accompany search
+;; terms for "unread items".  The resulting indicator may optionally
+;; be styled with a face, only for the label, only for the counter, or
+;; both.
 ;;
-;; The indicator is enabled when `notmuch-indicator-mode' is on.
+;; The indicator is displayed when `notmuch-indicator-mode' is enabled.
 ;;
 ;; The user option `notmuch-indicator-args' provides the means to define
 ;; search terms and associate them with a given label.  The label is
 ;; purely cosmetic, though it helps characterise the resulting counter.
-;;
-;; The value of `notmuch-indicator-args' is a list of plists (property
-;; lists).  Each plist consists of one mandatory property and two
-;; optional ones:
-;;
-;; 1. The `:terms', which is required, is a string that holds the
-;;    command-line arguments passed to `notmuch-count(1)' (read the
-;;    Notmuch documentation for the technicalities).
-;;
-;; 2. The `:label', which is optional, is an arbitrary string that is
-;;    prepended to the return value of the above.  If nil or omitted, no
-;;    label is displayed.
-;;
-;; 3. The `face', which is optional, is the symbol of a face that is
-;;    applied to the `:label'.  It should not be quoted, so like :face
-;;    bold.  Good candidates are `bold', `italic', `success', `warning',
-;;    `error', though anything will do.  If nil or omitted, no face is
-;;    used.
-;;
-;; Multiple plist lists represent separate `notmuch-count(1)' queries.
-;; These are run sequentially.  Their return values are joined into a
-;; single string.
-;;
-;; For instance, a value like the following defines three searches:
-;;
-;;     (setq notmuch-indicator-args
-;;           '((:terms "tag:unread and tag:inbox" :label "@")
-;;             (:terms "from:bank and tag:bills" :label "😱")
-;;             (:terms "--output threads tag:loveletter" :label "💕")))
-;;
-;; These form a string which realistically is like: @50 😱1000 💕0.
-;; Each component is clickable: it runs `notmuch-search' on the
-;; applicable `:terms'.
 ;;
 ;; The user option `notmuch-indicator-refresh-count' determines how
 ;; often the indicator will be refreshed.  It accepts a numeric argument
@@ -81,6 +52,10 @@
 ;;
 ;; The user option `notmuch-indicator-hide-empty-counters' hides zero
 ;; counters from the indicator, when it is set to a non-nil value.
+;;
+;; The user option `notmuch-indicator-add-to-mode-line-misc-info' can
+;; be set to nil for those who want to control the placement of the
+;; `notmuch-indicator-mode-line-construct'.
 ;;
 ;; Finally, and albeit obvious, the backronym for this package is:
 ;; notmuch-... Interested in Notmuch Data Indicators that Count Any
@@ -97,7 +72,7 @@
 (defcustom notmuch-indicator-args '((:terms "tag:unread and tag:inbox" :label "@"))
   "List of plists specifying terms for `notmuch-count(1)'.
 
-Each plist consists of one mandarory property and two optional
+Each plist consists of one mandarory property and three optional
 ones:
 
 1. The `:terms', which is required, is a string that holds the
@@ -105,34 +80,66 @@ ones:
    Notmuch documentation for the technicalities).
 
 2. The `:label', which is optional, is an arbitrary string that
-   is prepended to the return value of the above.  If nil or
-   omitted, no label is displayed.
+   is prepended to the return value of the above.  If the value
+   is nil or the property is omitted, no label is displayed.
 
-3. The `face', which is optional, is the symbol of a face that is
-   applied to the `:label'.  It should not be quoted, so like
-   :face bold.  Good candidates are `bold', `italic', `success',
-   `warning', `error', though anything will do.  If nil or
-   omitted, no face is used.
+3. The `:label-face', which is optional, is the symbol of a face
+   that is applied to the `:label'.  It should not be quoted, so
+   like :face bold.  Good candidates are `bold', `italic',
+   `success', `warning', `error', though anything will do.  If
+   the value is nil or the property is omitted, no face is used.
+   For backward-compatibility, `:face' has the same meaning as
+   `:label-face'.
+
+4. The `:counter-face', which is optional, is like `:label-face'
+   but applies to the number of the given counter.  It accepts
+   the unquoted symbol of a face, as noted above, though it also
+   takes a `inherit' value which means to use the same face as
+   the `:label-face'.  This too is an unquoted symbol.  If the
+   value is nil, or the property is omitted altogether, the
+   counter does not have a face assigned to it.
 
 Multiple plist lists represent separate `notmuch-count(1)'
 queries.  These are run sequentially.  Their return values are
-joined into a single string.
+joined into a list of strings.  By default, this is shown on the
+mode line, wherever `mode-line-misc-info' is displayed.  Refer to
+the user option `notmuch-indicator-add-to-mode-line-misc-info'
+to control the placement of the `notmuch-indicator-mode-line-construct'.
 
-For instance, a value like the following defines two commands (in
-the source code the quotes are escaped---please check the Help
-buffer for the clean code (I dislike markup in doc strings)):
+For instance, a value like the following defines three
+searches (in the source code the quotes are escaped---please
+check the Help buffer for the clean code (I dislike markup in doc
+strings)):
 
     (setq notmuch-indicator-args
          \\='((:terms \"tag:unread and tag:inbox\" :label \"@\")
-            (:terms \"from:bank and tag:bills\" :label \"😱\")
-            (:terms \"--output threads tag:loveletter\" :label \"💕\")))
+            (:terms \"from:bank and tag:bills and tag:unpaid\" :label \"😱\")
+            (:terms \"--output threads tag:fans\" :label \"❤️\")))
 
-These form a string which realistically is like: @50 😱1000 💕0."
+These form a list of strings which appears as something like
+this: @2 😱1000 ❤️0 (sorry, the `notmuch-indicator' is no miracle
+worker: your fan mail will not be more than your unpaid bills).
+
+Same idea as above, but with faces applied:
+
+    (setq notmuch-indicator-args
+         \\='(( :terms \"tag:unread and tag:inbox\"
+             :label \"@\"
+             :label-face success)
+           ( :terms \"from:bank and tag:bills and tag:unpaid\"
+             :label \"😱\"
+             :counter-face warning)
+           ( :terms \"--output threads tag:fans\"
+             :label \"❤️\"
+             :label-face error
+             :counter-face inherit)))"
   :type '(repeat
           (plist :options
                  (((const :tag "Search terms for `notmuch-count(1)'" :terms) string)
                   ((const :tag "Cosmetic label for the counter" :label) string)
-                  ((const :tag "Face applied to the label" :face) face))))
+                  ((const :tag "Face applied to the label" :label-face) face)
+                  ((const :tag "Face applied to the counter" :counter-face) face))))
+  :package-version '(notmuch-indicator . "1.2.0")
   :group 'notmuch-indicator)
 
 (defcustom notmuch-indicator-hide-empty-counters nil
@@ -205,7 +212,8 @@ package more flexible)."
   "When non-nil, append the notmuch indicator to the mode line.
 Experienced users can set this to a nil value and then include
 the `notmuch-indicator-mode-line-construct' anywhere they want in
-`mode-line-format' or related."
+`mode-line-format' or related.  Also read the manual for an
+example that uses the `tab-bar-mode'."
   :type 'boolean
   :package-version '(notmuch-indicator . "1.2.0")
   :group 'notmuch-indicator)
@@ -231,28 +239,50 @@ the `notmuch-indicator-mode-line-construct' anywhere they want in
 It accepts two %s specifiers for the label and number,
 respectively.")
 
-(defun notmuch-indicator--format-label (label count face terms)
-  "Format LABEL, COUNT, FACE and TERMS of `notmuch-indicator-args'."
+(defun notmuch-indicator--format-label (label count label-face counter-face terms)
+  "Format `notmuch-indicator-args'.
+LABEL is the value of the `:label' property.  If nil, return an
+empty string.
+
+COUNT is the return value of the search TERMS of property
+`:terms'.  If nil, return an empty string.
+
+LABEL-FACE is the value of the `:label-face' property, while
+COUNTER-FACE is that of `:counter-face'.  Apply them to LABEL and
+COUNT, respectively.  If nil, do not propertize LABEL or COUNT
+with a face."
   (let ((map (make-sparse-keymap)))
     (define-key map [mode-line mouse-1]
                 (lambda () (interactive) (notmuch-search terms)))
     (concat " " ; to separate multiple counters without changing the mouse hover highlight
             (propertize
              (format notmuch-indicator-counter-format
-                     (if (and face label)
-                         (propertize label 'face face)
+                     (if (and label-face label)
+                         (propertize label 'face label-face)
                        (or label ""))
-                     count)
+                     (if (and counter-face count)
+                         (propertize count 'face counter-face)
+                       (or count "")))
              'mouse-face 'mode-line-highlight
              'help-echo (format "mouse-1: Open notmuch search for `%s'" terms)
              'local-map map))))
+
+(defun notmuch-indicator--get-counter-face (properties)
+  "Get :counter-face from PROPERTIES.
+If its value is `inherit', get the `:label-face'."
+  (let ((value (plist-get properties :counter-face)))
+    (if (eq value 'inherit)
+        (or (plist-get properties :label-face)
+            (plist-get properties :face))
+      value)))
 
 (defun notmuch-indicator--format-counter (count properties)
   "Format counter with COUNT and PROPERTIES of `notmuch-indicator-args'."
   (notmuch-indicator--format-label
    (plist-get properties :label)
    count
-   (plist-get properties :face)
+   (or (plist-get properties :label-face) (plist-get properties :face))
+   (notmuch-indicator--get-counter-face properties)
    (plist-get properties :terms)))
 
 (defun notmuch-indicator--get-counters ()
