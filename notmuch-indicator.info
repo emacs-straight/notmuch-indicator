@@ -1,4 +1,4 @@
-This is docjKMrkL.info, produced by makeinfo version 6.8 from
+This is docKpp8Ve.info, produced by makeinfo version 6.8 from
 notmuch-indicator.texi.
 
 Copyright (C) 2022-2023 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docjKMrkL.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: docKpp8Ve.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 notmuch-indicator: Display mode line indicator with notmuch-count output
 ************************************************************************
@@ -88,7 +88,7 @@ Indices
 
 
 
-File: docjKMrkL.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
+File: docKpp8Ve.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -218,7 +218,7 @@ system path to the ‘notmuch’ binary.  Concretely, this is the return
 value of ‘(executable-find "notmuch")’.
 
 
-File: docjKMrkL.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
+File: docKpp8Ve.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
 
 2 Installation
 **************
@@ -229,7 +229,7 @@ File: docjKMrkL.info,  Node: Installation,  Next: Sample configuration,  Prev: O
 * Manual installation::
 
 
-File: docjKMrkL.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docKpp8Ve.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 2.1 GNU ELPA package
 ====================
@@ -248,7 +248,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docjKMrkL.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docKpp8Ve.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 2.2 Manual installation
 =======================
@@ -275,7 +275,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docjKMrkL.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: docKpp8Ve.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 3 Sample configuration
 **********************
@@ -298,7 +298,7 @@ File: docjKMrkL.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
 * Place the notmuch-indicator on the tab-bar::
 
 
-File: docjKMrkL.info,  Node: Place the notmuch-indicator on the tab-bar,  Up: Sample configuration
+File: docKpp8Ve.info,  Node: Place the notmuch-indicator on the tab-bar,  Up: Sample configuration
 
 3.1 Place the notmuch-indicator on the tab-bar
 ==============================================
@@ -324,7 +324,7 @@ such as with this arrangement:
 clickable.  This is not something we control.
 
 
-File: docjKMrkL.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: docKpp8Ve.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -336,11 +336,11 @@ Author/maintainer
      Protesilaos Stavrou.
 
 Contributions to code or user feedback
-     Henrik Kjerringvåg, MikeS, Mohamed Suliman, Stefan Monnier, Yusef
-     Aslam.
+     Henrik Kjerringvåg, MikeS, Mohamed Suliman, Sébastien Delafond,
+     Stefan Monnier, Yusef Aslam.
 
 
-File: docjKMrkL.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docKpp8Ve.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -822,7 +822,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docjKMrkL.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docKpp8Ve.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -834,7 +834,7 @@ B Indices
 * Concept index::
 
 
-File: docjKMrkL.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docKpp8Ve.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -848,7 +848,7 @@ B.1 Function index
                                                               (line   8)
 
 
-File: docjKMrkL.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docKpp8Ve.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -865,7 +865,7 @@ B.2 Variable index
 * notmuch-indicator-refresh-count:       Overview.            (line  93)
 
 
-File: docjKMrkL.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docKpp8Ve.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -888,11 +888,11 @@ Node: Manual installation9881
 Node: Sample configuration10694
 Node: Place the notmuch-indicator on the tab-bar11480
 Node: Acknowledgements12450
-Node: GNU Free Documentation License12878
-Node: Indices38239
-Node: Function index38415
-Node: Variable index38864
-Node: Concept index39542
+Node: GNU Free Documentation License12899
+Node: Indices38260
+Node: Function index38436
+Node: Variable index38885
+Node: Concept index39563
 
 End Tag Table
 
