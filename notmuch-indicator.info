@@ -1,4 +1,4 @@
-This is docKpp8Ve.info, produced by makeinfo version 6.8 from
+This is doczvMWQU.info, produced by makeinfo version 6.8 from
 notmuch-indicator.texi.
 
 Copyright (C) 2022-2023 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docKpp8Ve.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: doczvMWQU.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 notmuch-indicator: Display mode line indicator with notmuch-count output
 ************************************************************************
@@ -44,11 +44,11 @@ customization options for ‘notmuch-indicator’ (or
 pertinent to it.
 
    The documentation furnished herein corresponds to stable version
-1.1.0, released on 2023-10-14.  Any reference to a newer feature which
+1.2.0, released on 2024-05-11.  Any reference to a newer feature which
 does not yet form part of the latest tagged commit, is explicitly marked
 as such.
 
-   Current development target is 1.2.0-dev.
+   Current development target is 1.3.0-dev.
 
    • Package name (GNU ELPA): ‘notmuch-indicator’
    • Official manual: <https://protesilaos.com/emacs/notmuch-indicator>
@@ -88,7 +88,7 @@ Indices
 
 
 
-File: docKpp8Ve.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
+File: doczvMWQU.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -99,10 +99,6 @@ is that of ‘notmuch-count(1)’, which is used to find the number of items
 that match the given search terms.
 
    The indicator is displayed when ‘notmuch-indicator-mode’ is enabled.
-
-   [ The ‘notmuch-indicator-args’ are revised as part of 1.2.0-dev.
-Specifically, the ‘:face’ property is now called ‘:label-face’, while a
-new optional ‘:counter-face’ is accepted.  ]
 
    The user option ‘notmuch-indicator-args’ provides the means to define
 search terms and associate them with a given label.  The label is a
@@ -218,7 +214,7 @@ system path to the ‘notmuch’ binary.  Concretely, this is the return
 value of ‘(executable-find "notmuch")’.
 
 
-File: docKpp8Ve.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
+File: doczvMWQU.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
 
 2 Installation
 **************
@@ -229,7 +225,7 @@ File: docKpp8Ve.info,  Node: Installation,  Next: Sample configuration,  Prev: O
 * Manual installation::
 
 
-File: docKpp8Ve.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: doczvMWQU.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 2.1 GNU ELPA package
 ====================
@@ -248,7 +244,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docKpp8Ve.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: doczvMWQU.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 2.2 Manual installation
 =======================
@@ -275,7 +271,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docKpp8Ve.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: doczvMWQU.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 3 Sample configuration
 **********************
@@ -298,14 +294,12 @@ File: docKpp8Ve.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
 * Place the notmuch-indicator on the tab-bar::
 
 
-File: docKpp8Ve.info,  Node: Place the notmuch-indicator on the tab-bar,  Up: Sample configuration
+File: doczvMWQU.info,  Node: Place the notmuch-indicator on the tab-bar,  Up: Sample configuration
 
 3.1 Place the notmuch-indicator on the tab-bar
 ==============================================
 
-[ This information is relevant as part of 1.2.0-dev.  ]
-
-   The built-in ‘tab-bar-mode’ provides the ‘tab-bar-format’ option to
+The built-in ‘tab-bar-mode’ provides the ‘tab-bar-format’ option to
 display additional information on the tab bar instead of showing it on
 each mode line.  Add the ‘notmuch-indicator-tab-bar-format’ to the list,
 such as with this arrangement:
@@ -324,7 +318,7 @@ such as with this arrangement:
 clickable.  This is not something we control.
 
 
-File: docKpp8Ve.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: doczvMWQU.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -340,7 +334,7 @@ Contributions to code or user feedback
      Stefan Monnier, Yusef Aslam.
 
 
-File: docKpp8Ve.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: doczvMWQU.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -822,7 +816,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docKpp8Ve.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: doczvMWQU.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -834,7 +828,7 @@ B Indices
 * Concept index::
 
 
-File: docKpp8Ve.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: doczvMWQU.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -842,13 +836,13 @@ B.1 Function index
  [index ]
 * Menu:
 
-* notmuch-indicator-get-config-file:     Overview.            (line 113)
+* notmuch-indicator-get-config-file:     Overview.            (line 109)
 * notmuch-indicator-mode:                Overview.            (line  11)
 * notmuch-indicator-tab-bar-format:      Place the notmuch-indicator on the tab-bar.
-                                                              (line   8)
+                                                              (line   6)
 
 
-File: docKpp8Ve.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: doczvMWQU.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -856,16 +850,16 @@ B.2 Variable index
  [index ]
 * Menu:
 
-* notmuch-indicator-args:                Overview.            (line  17)
-* notmuch-indicator-force-refresh-commands: Overview.         (line  97)
-* notmuch-indicator-hide-empty-counters: Overview.            (line 101)
+* notmuch-indicator-args:                Overview.            (line  13)
+* notmuch-indicator-force-refresh-commands: Overview.         (line  93)
+* notmuch-indicator-hide-empty-counters: Overview.            (line  97)
 * notmuch-indicator-mode:                Overview.            (line  11)
-* notmuch-indicator-notmuch-binary:      Overview.            (line 126)
-* notmuch-indicator-notmuch-config-file: Overview.            (line 104)
-* notmuch-indicator-refresh-count:       Overview.            (line  93)
+* notmuch-indicator-notmuch-binary:      Overview.            (line 122)
+* notmuch-indicator-notmuch-config-file: Overview.            (line 100)
+* notmuch-indicator-refresh-count:       Overview.            (line  89)
 
 
-File: docKpp8Ve.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: doczvMWQU.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -882,17 +876,17 @@ B.3 Concept index
 Tag Table:
 Node: Top890
 Node: Overview3069
-Node: Installation9122
-Node: GNU ELPA package9309
-Node: Manual installation9881
-Node: Sample configuration10694
-Node: Place the notmuch-indicator on the tab-bar11480
-Node: Acknowledgements12450
-Node: GNU Free Documentation License12899
-Node: Indices38260
-Node: Function index38436
-Node: Variable index38885
-Node: Concept index39563
+Node: Installation8920
+Node: GNU ELPA package9107
+Node: Manual installation9679
+Node: Sample configuration10492
+Node: Place the notmuch-indicator on the tab-bar11278
+Node: Acknowledgements12188
+Node: GNU Free Documentation License12637
+Node: Indices37998
+Node: Function index38174
+Node: Variable index38623
+Node: Concept index39301
 
 End Tag Table
 
