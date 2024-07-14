@@ -1,2 +1,0 @@
-;; Generated package description from notmuch-indicator.el  -*- no-byte-compile: t -*-
-(define-package "notmuch-indicator" "1.2.0.0.20240511.94138" "Display mode line indicator with notmuch-count(1) output" '((emacs "27.1")) :commit "7aa1da708aeb9f729e8e0a99ef65341b7344815e" :authors '(("Protesilaos Stavrou" . "info@protesilaos.com")) :maintainer '("Protesilaos Stavrou" . "info@protesilaos.com") :keywords '("convenience" "mail") :url "https://github.com/protesilaos/notmuch-indicator")
