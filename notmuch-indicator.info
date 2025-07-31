@@ -1,4 +1,4 @@
-This is docSwQc4E.info, produced by makeinfo version 6.8 from
+This is docAerD6u.info, produced by makeinfo version 6.8 from
 notmuch-indicator.texi.
 
 Copyright (C) 2022-2023 Free Software Foundation, Inc.
@@ -20,7 +20,7 @@ START-INFO-DIR-ENTRY
 END-INFO-DIR-ENTRY
 
 
-File: docSwQc4E.info,  Node: Top,  Next: Overview,  Up: (dir)
+File: docAerD6u.info,  Node: Top,  Next: Overview,  Up: (dir)
 
 notmuch-indicator: Display mode line indicator with notmuch-count output
 ************************************************************************
@@ -88,7 +88,7 @@ Indices
 
 
 
-File: docSwQc4E.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
+File: docAerD6u.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
 1 Overview
 **********
@@ -214,7 +214,7 @@ system path to the ‘notmuch’ binary.  Concretely, this is the return
 value of ‘(executable-find "notmuch")’.
 
 
-File: docSwQc4E.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
+File: docAerD6u.info,  Node: Installation,  Next: Sample configuration,  Prev: Overview,  Up: Top
 
 2 Installation
 **************
@@ -225,7 +225,7 @@ File: docSwQc4E.info,  Node: Installation,  Next: Sample configuration,  Prev: O
 * Manual installation::
 
 
-File: docSwQc4E.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
+File: docAerD6u.info,  Node: GNU ELPA package,  Next: Manual installation,  Up: Installation
 
 2.1 GNU ELPA package
 ====================
@@ -244,7 +244,7 @@ archive.  Read:
 <https://protesilaos.com/codelog/2022-05-13-emacs-elpa-devel/>.
 
 
-File: docSwQc4E.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
+File: docAerD6u.info,  Node: Manual installation,  Prev: GNU ELPA package,  Up: Installation
 
 2.2 Manual installation
 =======================
@@ -271,7 +271,7 @@ following commands in a shell prompt:
    Everything is in place to set up the package.
 
 
-File: docSwQc4E.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
+File: docAerD6u.info,  Node: Sample configuration,  Next: Acknowledgements,  Prev: Installation,  Up: Top
 
 3 Sample configuration
 **********************
@@ -294,7 +294,7 @@ File: docSwQc4E.info,  Node: Sample configuration,  Next: Acknowledgements,  Pre
 * Place the notmuch-indicator on the tab-bar::
 
 
-File: docSwQc4E.info,  Node: Place the notmuch-indicator on the tab-bar,  Up: Sample configuration
+File: docAerD6u.info,  Node: Place the notmuch-indicator on the tab-bar,  Up: Sample configuration
 
 3.1 Place the notmuch-indicator on the tab-bar
 ==============================================
@@ -318,7 +318,7 @@ such as with this arrangement:
 clickable.  This is not something we control.
 
 
-File: docSwQc4E.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
+File: docAerD6u.info,  Node: Acknowledgements,  Next: GNU Free Documentation License,  Prev: Sample configuration,  Up: Top
 
 4 Acknowledgements
 ******************
@@ -331,10 +331,10 @@ Author/maintainer
 
 Contributions to code or user feedback
      Henrik Kjerringvåg, MikeS, Mohamed Suliman, Sébastien Delafond,
-     Stefan Monnier, Yusef Aslam.
+     Stefan Monnier, Yejun Su, Yusef Aslam.
 
 
-File: docSwQc4E.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
+File: docAerD6u.info,  Node: GNU Free Documentation License,  Next: Indices,  Prev: Acknowledgements,  Up: Top
 
 Appendix A GNU Free Documentation License
 *****************************************
@@ -816,7 +816,7 @@ software license, such as the GNU General Public License, to permit
 their use in free software.
 
 
-File: docSwQc4E.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
+File: docAerD6u.info,  Node: Indices,  Prev: GNU Free Documentation License,  Up: Top
 
 B Indices
 *********
@@ -828,7 +828,7 @@ B Indices
 * Concept index::
 
 
-File: docSwQc4E.info,  Node: Function index,  Next: Variable index,  Up: Indices
+File: docAerD6u.info,  Node: Function index,  Next: Variable index,  Up: Indices
 
 B.1 Function index
 ==================
@@ -842,7 +842,7 @@ B.1 Function index
                                                               (line   6)
 
 
-File: docSwQc4E.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
+File: docAerD6u.info,  Node: Variable index,  Next: Concept index,  Prev: Function index,  Up: Indices
 
 B.2 Variable index
 ==================
@@ -859,7 +859,7 @@ B.2 Variable index
 * notmuch-indicator-refresh-count:       Overview.            (line  89)
 
 
-File: docSwQc4E.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
+File: docAerD6u.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
 
 B.3 Concept index
 =================
@@ -882,11 +882,11 @@ Node: Manual installation9679
 Node: Sample configuration10492
 Node: Place the notmuch-indicator on the tab-bar11278
 Node: Acknowledgements12188
-Node: GNU Free Documentation License12637
-Node: Indices37998
-Node: Function index38174
-Node: Variable index38623
-Node: Concept index39301
+Node: GNU Free Documentation License12647
+Node: Indices38008
+Node: Function index38184
+Node: Variable index38633
+Node: Concept index39311
 
 End Tag Table
 
