@@ -146,16 +146,15 @@ Same idea as above, but with faces applied:
   :type 'boolean
   :group 'notmuch-indicator)
 
-;; TODO 2022-09-19: If this changes, the `notmuch-indicator-mode' needs
-;; to be restarted.  We can add a custom setter here.  Perhaps there is
-;; also some elegant way to handle this when the variable is changed
-;; with `setq'.
 (defcustom notmuch-indicator-refresh-count (* 60 3)
   "How often to update the indicator, in seconds.
-It probably is better to not set this to a very low number.
-
-Also see `notmuch-indicator-force-refresh-commands'."
-  :type 'number
+If the value is nil, then never update the indicator on a time basis: do
+it only as part of the `notmuch-indicator-force-refresh-commands' and/or
+the `notmuch-after-tag-hook'."
+  :type '(choice
+          (natnum :tag "Number of seconds to auto-refresh the indicator")
+          (const :tag "Do not refresh based on a timer (events will do it)" nil))
+  :package-version '(notmuch-indicator . "1.3.0")
   :group 'notmuch-indicator)
 
 (defcustom notmuch-indicator-force-refresh-commands '(notmuch-refresh-this-buffer)
@@ -232,9 +231,7 @@ example that uses the `tab-bar-mode'."
               notmuch-indicator-notmuch-config-file
               (shell-quote-argument terms))))))
 
-(declare-function
- notmuch-search "notmuch"
- (&optional query oldest-first target-thread target-line no-display))
+(declare-function notmuch-search "notmuch" (&optional query oldest-first hide-excluded target-thread target-line no-display))
 
 (defvar notmuch-indicator-counter-format "%s%s"
   "The `format' string for each counter.
@@ -254,17 +251,18 @@ COUNTER-FACE is that of `:counter-face'.  Apply them to LABEL and
 COUNT, respectively.  If nil, do not propertize LABEL or COUNT
 with a face."
   (let ((map (make-sparse-keymap)))
-    (define-key map [mode-line mouse-1]
-                (lambda () (interactive) (notmuch-search terms)))
+    (define-key map [mode-line mouse-1] (lambda () (interactive) (notmuch-search terms)))
     (concat " " ; to separate multiple counters without changing the mouse hover highlight
             (propertize
              (format notmuch-indicator-counter-format
-                     (if (and label-face label)
-                         (propertize label 'face label-face)
-                       (or label ""))
-                     (if (and counter-face count)
-                         (propertize count 'face counter-face)
-                       (or count "")))
+                     (cond
+                      ((and label-face label) (propertize label 'face label-face))
+                      (label)
+                      (""))
+                     (cond
+                      ((and counter-face count) (propertize count 'face counter-face))
+                      (count)
+                      ("")))
              'mouse-face 'mode-line-highlight
              'help-echo (format "mouse-1: Open notmuch search for `%s'" terms)
              'local-map map))))
@@ -321,23 +319,18 @@ Do it when `notmuch-indicator-mode' is enabled.  Also see
 (defun notmuch-indicator--running-p ()
   "Return non-nil if `notmuch-indicator--indicator' is running."
   (when (and notmuch-indicator-notmuch-config-file notmuch-indicator-notmuch-binary)
-    (delq nil
-          (mapcar
-           (lambda (timer)
-             (eq (timer--function timer) 'notmuch-indicator--indicator))
-           timer-list))))
-
-(defun notmuch-indicator--run ()
-  "Run the timer with a delay, starting it if necessary.
-The delay is specified by `notmuch-indicator-refresh-count'."
-  (unless (notmuch-indicator--running-p)
-    (run-at-time nil notmuch-indicator-refresh-count #'notmuch-indicator--indicator)))
+    (seq-filter
+     (lambda (timer)
+       (eq (timer--function timer) 'notmuch-indicator--indicator))
+     timer-list)))
 
 (defun notmuch-indicator-refresh ()
   "Refresh the active indicator."
   (when (notmuch-indicator--running-p)
-    (cancel-function-timers #'notmuch-indicator--indicator)
-    (run-at-time nil notmuch-indicator-refresh-count #'notmuch-indicator--indicator)))
+    (cancel-function-timers #'notmuch-indicator--indicator))
+  (when (natnump notmuch-indicator-refresh-count)
+    (run-at-time nil notmuch-indicator-refresh-count #'notmuch-indicator--indicator))
+  (notmuch-indicator--indicator))
 
 (define-obsolete-function-alias
   'notmuch-indicator--refresh
@@ -350,12 +343,11 @@ The delay is specified by `notmuch-indicator-refresh-count'."
 ;;;###autoload
 (define-minor-mode notmuch-indicator-mode
   "Display mode line indicator with `notmuch-count(1)' output.
+Set up the `notmuch-after-tag-hook' to refresh the indicator after the
+tags of a messsge change.
 
-For the search terms and the label that can accompany them, refer
-to the user option `notmuch-indicator-args'.
-
-To control how often the indicator is updated, check the user
-option `notmuch-indicator-refresh-count'.."
+Also see: `notmuch-indicator-args', `notmuch-indicator-refresh-count',
+and `notmuch-indicator-force-refresh-commands'."
   :init-value nil
   :global t
   (if notmuch-indicator-mode
@@ -363,14 +355,16 @@ option `notmuch-indicator-refresh-count'.."
         (when notmuch-indicator-add-to-mode-line-misc-info
           (setq notmuch-indicator--used-mode-line-construct notmuch-indicator-mode-line-construct)
           (add-to-list 'mode-line-misc-info notmuch-indicator-mode-line-construct))
-        (notmuch-indicator--run)
+        (notmuch-indicator-refresh)
+        (add-hook 'notmuch-after-tag-hook #'notmuch-indicator-refresh)
         (dolist (fn notmuch-indicator-force-refresh-commands)
           (advice-add fn :after #'notmuch-indicator-refresh)))
     (setq mode-line-misc-info (delete notmuch-indicator--used-mode-line-construct mode-line-misc-info))
     (cancel-function-timers #'notmuch-indicator--indicator)
+    (remove-hook 'notmuch-after-tag-hook #'notmuch-indicator-refresh)
     (dolist (fn notmuch-indicator-force-refresh-commands)
       (advice-remove fn #'notmuch-indicator-refresh))
-    (force-mode-line-update t)))
+    (force-mode-line-update :all-mode-lines-and-related)))
 
 (provide 'notmuch-indicator)
 ;;; notmuch-indicator.el ends here
