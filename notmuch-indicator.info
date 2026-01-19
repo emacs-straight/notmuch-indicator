@@ -44,11 +44,11 @@ customization options for ‘notmuch-indicator’ (or
 pertinent to it.
 
    The documentation furnished herein corresponds to stable version
-1.2.0, released on 2024-05-11.  Any reference to a newer feature which
+1.3.0, released on 2026-01-18.  Any reference to a newer feature which
 does not yet form part of the latest tagged commit, is explicitly marked
 as such.
 
-   Current development target is 1.3.0-dev.
+   Current development target is 1.4.0-dev.
 
    • Package name (GNU ELPA): ‘notmuch-indicator’
    • Official manual: <https://protesilaos.com/emacs/notmuch-indicator>
@@ -102,8 +102,7 @@ that match the given search terms.
 The indicator is refreshed via the ‘notmuch-after-tag-hook’, the
 ‘notmuch-indicator-force-refresh-commands’, and/or after
 ‘notmuch-indicator-refresh-count’ seconds.  Those are covered further
-below.  [ The inclusion of the ‘notmuch-after-tag-hook’ is part of
-1.3.0-dev.  ]
+below.
 
    The user option ‘notmuch-indicator-args’ provides the means to define
 search terms and associate them with a given label.  The label is a
@@ -186,8 +185,7 @@ often the indicator is automatically refreshed, in seconds.  If its
 value is ‘nil’, then the indicator is never refreshed automatically:
 that happens only as part of the
 ‘notmuch-indicator-force-refresh-commands’ and/or the
-‘notmuch-after-tag-hook’.  [ The ‘notmuch-indicator-refresh-count’ can
-be ‘nil’ as part of 1.3.0-dev.  ]
+‘notmuch-after-tag-hook’.
 
    The user option ‘notmuch-indicator-force-refresh-commands’ accepts as
 its value a list of symbols.  Those are commands that will forcefully
@@ -845,7 +843,7 @@ B.1 Function index
  [index ]
 * Menu:
 
-* notmuch-indicator-get-config-file:     Overview.            (line 118)
+* notmuch-indicator-get-config-file:     Overview.            (line 116)
 * notmuch-indicator-mode:                Overview.            (line  11)
 * notmuch-indicator-tab-bar-format:      Place the notmuch-indicator on the tab-bar.
                                                               (line   6)
@@ -859,14 +857,14 @@ B.2 Variable index
  [index ]
 * Menu:
 
-* notmuch-after-tag-hook:                Overview.            (line  94)
-* notmuch-indicator-args:                Overview.            (line  18)
-* notmuch-indicator-force-refresh-commands: Overview.         (line 102)
-* notmuch-indicator-hide-empty-counters: Overview.            (line 106)
+* notmuch-after-tag-hook:                Overview.            (line  93)
+* notmuch-indicator-args:                Overview.            (line  17)
+* notmuch-indicator-force-refresh-commands: Overview.         (line 100)
+* notmuch-indicator-hide-empty-counters: Overview.            (line 104)
 * notmuch-indicator-mode:                Overview.            (line  11)
-* notmuch-indicator-notmuch-binary:      Overview.            (line 131)
-* notmuch-indicator-notmuch-config-file: Overview.            (line 109)
-* notmuch-indicator-refresh-count:       Overview.            (line  94)
+* notmuch-indicator-notmuch-binary:      Overview.            (line 129)
+* notmuch-indicator-notmuch-config-file: Overview.            (line 107)
+* notmuch-indicator-refresh-count:       Overview.            (line  93)
 
 
 File: notmuch-indicator.info,  Node: Concept index,  Prev: Variable index,  Up: Indices
@@ -886,17 +884,17 @@ B.3 Concept index
 Tag Table:
 Node: Top900
 Node: Overview3089
-Node: Installation9484
-Node: GNU ELPA package9679
-Node: Manual installation10259
-Node: Sample configuration11080
-Node: Place the notmuch-indicator on the tab-bar11874
-Node: Acknowledgements12792
-Node: GNU Free Documentation License13259
-Node: Indices38427
-Node: Function index38611
-Node: Variable index39068
-Node: Concept index39827
+Node: Installation9319
+Node: GNU ELPA package9514
+Node: Manual installation10094
+Node: Sample configuration10915
+Node: Place the notmuch-indicator on the tab-bar11709
+Node: Acknowledgements12627
+Node: GNU Free Documentation License13094
+Node: Indices38262
+Node: Function index38446
+Node: Variable index38903
+Node: Concept index39662
 
 End Tag Table
 
