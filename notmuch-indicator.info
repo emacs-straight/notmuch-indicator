@@ -1,4 +1,4 @@
-This is notmuch-indicator.info, produced by makeinfo version 7.1.1 from
+This is notmuch-indicator.info, produced by makeinfo version 7.2 from
 notmuch-indicator.texi.
 
 Copyright (C) 2022-2026 Free Software Foundation, Inc.
@@ -86,7 +86,6 @@ Indices
 * Variable index::
 * Concept index::
 
-
 
 File: notmuch-indicator.info,  Node: Overview,  Next: Installation,  Prev: Top,  Up: Top
 
@@ -150,7 +149,7 @@ of the ‘notmuch-indicator-mode-line-construct’.
 
    For instance, a value like the following defines three searches (in
 the source code the quotes are escaped--please check the Help buffer for
-the clean code (I dislike markup in doc strings)):
+the clean code (I dislike markup in docstrings)):
 
      (setq notmuch-indicator-args
           '((:terms "tag:unread and tag:inbox" :label "@")
@@ -879,26 +878,26 @@ B.3 Concept index
 * Installation instructions:             Installation.          (line 6)
 * Package configuration:                 Sample configuration.  (line 6)
 
-
 
 Tag Table:
-Node: Top900
-Node: Overview3089
-Node: Installation9319
-Node: GNU ELPA package9514
-Node: Manual installation10094
-Node: Sample configuration10915
-Node: Place the notmuch-indicator on the tab-bar11709
-Node: Acknowledgements12627
-Node: GNU Free Documentation License13094
-Node: Indices38262
-Node: Function index38446
-Node: Variable index38903
-Node: Concept index39662
+Node: Top898
+Node: Overview3086
+Node: Installation9315
+Node: GNU ELPA package9510
+Node: Manual installation10090
+Node: Sample configuration10911
+Node: Place the notmuch-indicator on the tab-bar11705
+Node: Acknowledgements12623
+Node: GNU Free Documentation License13090
+Node: Indices38258
+Node: Function index38442
+Node: Variable index38899
+Node: Concept index39658
 
 End Tag Table
 
 
 Local Variables:
 coding: utf-8
+Info-documentlanguage: en
 End:
